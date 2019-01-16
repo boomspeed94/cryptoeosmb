@@ -1,6 +1,7 @@
 var router = require('express').Router();
 
-router.use('/', require('./users'));
+router.use('/api', require('../components/users'));
+router.use('/api', require('../components/accounts'));
 
 router.use(function(err, req, res, next){
   if(err.name === 'ValidationError'){
@@ -15,5 +16,6 @@ router.use(function(err, req, res, next){
 
   return next(err);
 });
+
 
 module.exports = router;

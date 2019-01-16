@@ -43,10 +43,10 @@ if(isProduction){
   mongoose.set('debug', true);
 }
 
-require('./models/User');
+require('./components/users/user');
 require('./config/passport');
 
-app.use(require('./routes'));
+app.use(require('./app'));
 
 
 /// catch 404 and forward to error handler
@@ -59,9 +59,6 @@ app.use(function(req, res, next) {
 //development handle error will print stacktrace
 if(!isProduction){
   app.use(function(err, req, res, next){
-    console.log("error ne");
-    console.log(req.body);
-    console.log(err.stack);
     res.status(err.status || 500);
     res.json({'errors': {
       message: err.message,
@@ -73,7 +70,6 @@ if(!isProduction){
 //production handle error will print stacktrace
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  console.log("error ne");
   res.json({'errors': {
     message: err.message,
     error: {}
