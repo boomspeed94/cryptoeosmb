@@ -1,5 +1,5 @@
 var jwt = require('express-jwt');
-var secret = require('../config').secret;
+const config = require('../config');
 
 function getTokenFromHeader(req){
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Token' ||
@@ -12,12 +12,12 @@ function getTokenFromHeader(req){
 
 var auth = {
   required: jwt({
-    secret: secret,
+    secret: config.session.secret,
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }),
   optional: jwt({
-    secret: secret,
+    secret: config.session.secret,
     userProperty: 'payload',
     credentialsRequired: false,
     getToken: getTokenFromHeader

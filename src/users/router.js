@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
-var router = require('express').Router();
-var passport = require('passport');
-var User = mongoose.model('User');
-var auth = require('../../app/auth');
+const mongoose = require('mongoose');
+const router = require('express').Router();
+const passport = require('passport');
+const User = mongoose.model('User');
+const auth = require('../jwt/auth');
 
 //get user information
-router.get('/user', auth.required, function(req, res, next){
+router.get('/', auth.required, function(req, res, next){
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
 
@@ -14,7 +14,7 @@ router.get('/user', auth.required, function(req, res, next){
 });
 
 //update user information
-router.put('/user', auth.required, function(req, res, next){
+router.put('/', auth.required, function(req, res, next){
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
 
@@ -36,7 +36,7 @@ router.put('/user', auth.required, function(req, res, next){
 });
 
 //login url
-router.post('/users/login', function(req, res, next){
+router.post('/login', function(req, res, next){
   if(!req.body.user.email){
     return res.status(422).json({errors: {email: "can't be blank"}});
   }
@@ -58,7 +58,7 @@ router.post('/users/login', function(req, res, next){
 });
 
 
-router.post('/users', function(req, res, next){
+router.post('/', function(req, res, next){
   var user = new User();
 
   user.username = req.body.user.username;
