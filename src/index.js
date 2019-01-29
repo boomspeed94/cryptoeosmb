@@ -8,6 +8,7 @@ const dotenv = require('dotenv').config()
 const session = require('./session')
 const logger = require('./logger')
 const config = require('./config')
+const notify = require('./notify');
 
 const app = express();
 
@@ -67,4 +68,5 @@ app.use(function(err, req, res, next) {
 var server = app.listen(config.port, err => {
   if (err) throw err
   logger.info(`> Ready on ${config.apiUrl}`)
+  notify.init(server)
 });
