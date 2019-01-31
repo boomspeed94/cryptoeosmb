@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function(req, res, next){
-    if(!req.body.time === 'undefined'){
+    if(req.body.time === 'undefined'){
         res.status(422).json({errors: {'time': "can't be blank!"}})
     }
 
