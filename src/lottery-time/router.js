@@ -25,7 +25,7 @@ router.post('/', function(req, res, next){
 
 router.put('/', function(req, res, next){
     LotteryTime.findOne({name: 'Lottery Time'}).then(function(lotteryTime){
-        if(!lotteryTime){ return res.sendStatus(401); }
+        if(!lotteryTime){ return res.status(404).json({errors: 'Count down time not exists. Let create one.'}); }
 
         if(typeof req.body.time !== 'undefined'){
             lotteryTime.time = req.body.time;
