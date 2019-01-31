@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const passport = require('passport');
 const errorhandler = require('errorhandler');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -34,6 +33,8 @@ mongoose.connect(
 )
 
 require('./users');
+require('./lottery-time');
+require('./block');
 require('./jwt/passport');
 app.use('/api/v1', require('./router'));
 
