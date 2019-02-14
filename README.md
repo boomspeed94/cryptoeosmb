@@ -11,7 +11,11 @@ src
 ```
 
 # API Documentation 
-
+### Require Headers:
+  ```
+    Content-Type    application/json
+    X-Requested-With    XMLHttpRequest
+  ```
 #### Websocket:
  1. Connect to server: <br/>
    `var connection = new WebSocket('ws://domain.com/notification');`
@@ -45,5 +49,14 @@ src
           "time": "16:00:00"   //Format HH:mm:ss
         }
         ```
+ #### Mock test websocket backend: Countdown time per day <br/>
+   API endpoint: `http://domain.com/api/v1/lottery` <br/>
+   POST:  <br/>
+    @Params
+      ```
+      {
+        "lottery": "16 20 10 30 15 60"
+      }
+      ```
   
 `In comming...`
