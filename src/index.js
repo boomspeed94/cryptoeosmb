@@ -35,6 +35,7 @@ mongoose.connect(
 require('./users');
 require('./lottery-time');
 require('./block');
+require('./lottery');
 require('./jwt/passport');
 app.use('/api/v1', require('./router'));
 

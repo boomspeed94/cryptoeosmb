@@ -3,9 +3,9 @@ const router = require('express').Router();
 const LotteryTime = mongoose.model('LotteryTime');
 
 router.get('/', function (req, res, next) {
-    LotteryTime.findOne({'name':"Lottery Time"}).then(function (time) {
-        if(!time) res.sendStatus(401);
-        res.json({'lottery_time': time.time})
+    LotteryTime.findOne({'name':"Lottery Time"}).then(function (lotteryTime) {
+        if(!lotteryTime) res.sendStatus(401);
+        res.json(lotteryTime.toJSON())
     }).catch(next);
 
 });
@@ -18,8 +18,10 @@ router.post('/', function(req, res, next){
     var lotteryTime = new LotteryTime();
     lotteryTime.name = req.body.name ? req.body.name : 'Lottery Time';
     lotteryTime.time = req.body.time;
+    lotteryTime.repeat = req.body.repeat ? req.body.repeat : 1;
+    lotteryTime.repeat_period = req.body.repeat_period ? req.body.repeat_period : 'day';
     lotteryTime.save().then(function () {
-        return res.json({'lottery_time': lotteryTime.time})
+        return res.json(lotteryTime.toJSON())
     }).catch(next);
 });
 
@@ -32,7 +34,7 @@ router.put('/', function(req, res, next){
         }
 
         return lotteryTime.save().then(function(){
-            return res.json({'lottery_time': lotteryTime.time});
+            return res.json(lotteryTime.toJSON());
         });
     }).catch(next);
 });

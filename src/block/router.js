@@ -15,7 +15,8 @@ router.post('/', function (req, res, next) {
         if(response.body){
             var nowDate = new Date()
             var data = response.body;
-            var date = new Date(nowDate.getUTCFullYear() + '-' + nowDate.getUTCMonth()+1 + "-" + nowDate.getUTCDate());
+            //var date = new Date(nowDate.getUTCFullYear() + '-' + nowDate.getUTCMonth()+1 + "-" + nowDate.getUTCDate());
+            var date = new Date(Date.UTC(nowDate.getFullYear(),nowDate.getMonth(), nowDate.getDate()));
             Block.findOne({date_created: date}).then(function (block) {
                 if(!block){
                     block = new Block();
@@ -41,7 +42,8 @@ router.post('/', function (req, res, next) {
 //response block today
 router.get('/', function (req, res, next) {
     var nowDate = new Date()
-    var date = new Date(nowDate.getUTCFullYear() + '-' + nowDate.getUTCMonth()+1 + "-" + nowDate.getUTCDate());
+    //var date = new Date(nowDate.getUTCFullYear() + '-' + nowDate.getUTCMonth()+1 + "-" + nowDate.getUTCDate());
+    var date = new Date(Date.UTC(nowDate.getFullYear(),nowDate.getMonth(), nowDate.getDate()));
     Block.findOne({date_created: date}).then(function (block) {
         if(!block) {
             res.json({errors: 'block not found'});

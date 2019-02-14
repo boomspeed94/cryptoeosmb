@@ -12,7 +12,7 @@ const send = function(params){
   const data = {
     "status": 200,
     "lottery": true,
-    "winning_number": params.winning_number
+    "winning_number": params.lottery
   }
   wsServer.clients.forEach(function each(client) {
      client.send(JSON.stringify(data));
