@@ -18,6 +18,21 @@ router.get('/', function(req, res, next){
   }).catch(next);
 });
 
+router.get('/testing', function(req, res, next){
+  var json = {
+    'type': "JackPot",
+    'white_ball_1': "4",
+    'white_ball_2': "11",
+    'white_ball_3': "23",
+    'white_ball_4': "46",
+    'white_ball_5': "53",
+    'red_ball': "16",
+    'date_created': "Sat, 16 Feb 2019 17:25:05 GMT",
+  }
+  notify.send({'lottery': json})
+  res.json({'lottery': json})
+})
+
 router.post('/', function(req, res, next){
     if(req.body.lottery === 'undefined'){
         res.status(422).json({errors: {'lottery': "can't be blank!"}})
