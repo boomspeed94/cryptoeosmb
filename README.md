@@ -9,6 +9,10 @@ src
   |-- config.js
 .env
 ```
+# Start project
+1. Install mogodb <br/>
+2. Update .env file
+3. Run: ` npm start`
 
 # API Documentation 
 ### Require Headers:
@@ -17,19 +21,32 @@ src
     X-Requested-With    XMLHttpRequest
   ```
 #### Websocket:
- 1. Connect to server: <br/>
+ 1. Client connect to server: <br/>
    `var connection = new WebSocket('ws://domain.com/notification');`
  2. Message response:
   ```
    {
-    "status": 200,
-    "lottery": true,
-    "winning_number": "10 12 14 59 03 49"
-   }
+    "status":200,
+    "lottery":true,
+    "winning_number":{
+      "type":"JackPot",
+      "white_ball_1":4,
+      "white_ball_2":12,
+      "white_ball_3":24,
+      "white_ball_4":35,
+      "white_ball_5":53,
+      "red_ball":16,
+      "date_created":"Sat, 16 Feb 2019 17:25:05 GMT"
+      }
+  }
   ```
+  
+  3. Endpoint testing:
+    GET: http://localhost:3000/api/v1/lottery/testing <br/>
  #### Countdown Time: Countdown time per day
    API endpoint: `http://domain.com/api/v1/lottery_times`
    1. GET: get countdown time <br/>
+     Response: <br/>
      ```
       {
           "lottery_time": "16:00:00"
@@ -49,14 +66,5 @@ src
           "time": "16:00:00"   //Format HH:mm:ss
         }
         ```
- #### Mock test websocket backend: Countdown time per day <br/>
-   API endpoint: `http://domain.com/api/v1/lottery` <br/>
-   POST:  <br/>
-    @Params
-      ```
-      {
-        "lottery": "16 20 10 30 15 60"
-      }
-      ```
   
 `In comming...`
