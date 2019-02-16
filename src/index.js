@@ -32,11 +32,9 @@ mongoose.connect(
   err => logger.info(`Connect mongo has error ${err}`)
 )
 
-require('./users');
 require('./lottery-time');
 require('./block');
 require('./lottery');
-require('./jwt/passport');
 app.use('/api/v1', require('./router'));
 
 /// catch 404 and forward to error handler

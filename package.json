@@ -5,13 +5,13 @@
   "main": "src/index.js",
   "scripts": {
     "mongo:start": "docker run --name realworld-mongo -p 27017:27017 mongo & sleep 5",
-    "start": "NODE_ENV=production node src/index.js",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "nodemon src/index.js",
     "stop": "lsof -ti :3000 | xargs kill",
     "mongo:stop": "docker stop realworld-mongo && docker rm realworld-mongo"
   },
-  "author": "truongnx0111@gmail.com",
+  "author": "truongnx0111",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -23,6 +23,7 @@
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
     "express-session": "^1.15.6",
+    "js-sha3": "^0.8.0",
     "jsonwebtoken": "^8.4.0",
     "method-override": "^3.0.0",
     "methods": "^1.1.2",

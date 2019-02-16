@@ -4,7 +4,7 @@ const LotteryTime = mongoose.model('LotteryTime');
 
 router.get('/', function (req, res, next) {
     LotteryTime.findOne({'name':"Lottery Time"}).then(function (lotteryTime) {
-        if(!lotteryTime) res.sendStatus(401);
+        if(!lotteryTime) res.status(403).json({"message": "Let create a Lottery Time!"});
         res.json(lotteryTime.toJSON())
     }).catch(next);
 
