@@ -1,4 +1,4 @@
 module.exports = {
-    name: 'TimeLottery',
-    model: require('./model')
+  name: 'TimeLottery',
+  model: require('./model')
 }

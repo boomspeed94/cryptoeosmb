@@ -1,4 +1,4 @@
 module.exports = {
-    name: 'Lottery',
-    model: require('./model')
+  name: 'Lottery',
+  model: require('./model')
 }
